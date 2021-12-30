@@ -31,7 +31,7 @@
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>{{ $t(item.title) }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -53,7 +53,7 @@
 export default {
   data: () => ({
     items: [
-      {title: 'Naptár', icon: 'mdi-view-dashboard', route: '/calendar'},
+      {title: 'calendar', icon: 'mdi-view-dashboard', route: '/calendar'},
       {title: 'About', icon: 'mdi-help-box', route: '/about'},
     ],
     drawer: null

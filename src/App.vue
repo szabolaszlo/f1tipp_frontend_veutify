@@ -44,7 +44,9 @@
     </v-app-bar>
 
     <v-main>
-      <router-view></router-view>
+      <v-slide-x-transition mode="out-in">
+        <router-view></router-view>
+      </v-slide-x-transition>
     </v-main>
   </v-app>
 </template>
@@ -53,8 +55,8 @@
 export default {
   data: () => ({
     items: [
-      {title: 'calendar', icon: 'mdi-view-dashboard', route: '/calendar'},
-      {title: 'About', icon: 'mdi-help-box', route: '/about'},
+      {title: 'calendar', icon: 'mdi-calendar-month', route: '/calendar'},
+      {title: 'betChampionship', icon: 'mdi-view-dashboard', route: '/betChampionship'},
     ],
     drawer: null
   }),

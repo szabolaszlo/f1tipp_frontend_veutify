@@ -4,5 +4,7 @@
   "sprintQualify": "Sprint Kvalifikáció",
   "sprint_qualify": "Sprint Kvalifikáció",
   "calendar": "Naptár",
-  "betChampionship": "Tipp Bajnokság"
+  "betChampionship": "Tipp Bajnokság",
+  "loadError": "Sajnos hiba történt az adatok betöltésekor, próbálkozz később!",
+  "loading": "Adatok betöltése ..."
 }

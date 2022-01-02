@@ -6,7 +6,8 @@
       <v-data-table
           :headers="headers"
           :items="users"
-          :loading="! !!users.length"
+          :loading="! !!errorMessage"
+          :loading-text="$t('loading')"
           :items-per-page=100
           :hide-default-header="true"
           :hide-default-footer="true"
@@ -23,6 +24,11 @@
             <td>{{ props.item.alternativePointDifference }}</td>
           </tr>
         </template>
+        <template slot="no-data">
+          <v-alert :value="true" color="error">
+            {{ $t('loadError') }}
+          </v-alert>
+        </template>
       </v-data-table>
     </v-card-text>
   </v-card>
@@ -36,6 +42,7 @@ export default {
   name: 'BetChampionship',
   data() {
     return {
+      errorMessage: '',
       users: [],
       headers: [
         {text: 'name', value: 'name'},
@@ -47,7 +54,10 @@ export default {
   mounted() {
     axios
         .get('http://127.0.0.1/api/users')
-        .then(response => (this.users = this.filterUsers(response.data['hydra:member'])));
+        .then(response => (this.users = this.filterUsers(response.data['hydra:member'])))
+        .catch(error => {
+          this.errorMessage = error.message
+        });
   },
   methods: {
     filterUsers: function (users) {

@@ -25,7 +25,8 @@
           dense
           :headers="headers"
           :items="filteredEvents"
-          :loading="! !!filteredEvents.length"
+          :loading="loading"
+          :loading-text="$t('loading')"
           :items-per-page=100
           :hide-default-header="true"
           :hide-default-footer="true"
@@ -36,6 +37,11 @@
             <td>{{ props.item.dateTime.toLocaleDateString() }} {{ props.item.dateTime.toLocaleTimeString() }}</td>
             <td>{{ $t(props.item.type) }}</td>
           </tr>
+        </template>
+        <template slot="no-data">
+          <v-alert v-if="errorMessage" :value="true" color="error">
+            {{ $t('loadError') }}
+          </v-alert>
         </template>
       </v-data-table>
     </v-card-text>
@@ -51,6 +57,8 @@ export default {
   name: 'Calendar',
   data() {
     return {
+      errorMessage: '',
+      loading: true,
       onlyRemaining: true,
       eventTypes: [
         new EventType('qualify', 'qualify', true),
@@ -68,8 +76,15 @@ export default {
   },
   mounted() {
     axios
-        .get('http://127.0.0.1/api/events')
-        .then(response => (this.events = response.data['hydra:member']))
+        .get('/events')
+        .then(response => {
+          this.events = response.data['hydra:member'];
+          this.loading = false;
+        })
+        .catch(error => {
+          this.loading = false;
+          this.errorMessage = error.message;
+        })
   },
   watch: {
     events: function () {

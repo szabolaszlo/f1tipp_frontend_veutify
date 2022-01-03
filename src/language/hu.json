@@ -6,5 +6,6 @@
   "calendar": "Naptár",
   "betChampionship": "Tipp Bajnokság",
   "loadError": "Sajnos hiba történt az adatok betöltésekor, próbálkozz később!",
-  "loading": "Adatok betöltése ..."
+  "loading": "Adatok betöltése ...",
+  "news": "Hírek"
 }

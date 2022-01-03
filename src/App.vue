@@ -45,7 +45,7 @@
 
     <v-main>
       <v-slide-x-transition mode="out-in">
-        <router-view></router-view>
+          <router-view></router-view>
       </v-slide-x-transition>
     </v-main>
   </v-app>
@@ -57,6 +57,7 @@ export default {
     items: [
       {title: 'calendar', icon: 'mdi-calendar-month', route: '/calendar'},
       {title: 'betChampionship', icon: 'mdi-view-dashboard', route: '/betChampionship'},
+      {title: 'news', icon: 'mdi-view-news', route: '/news'},
     ],
     drawer: null
   }),
